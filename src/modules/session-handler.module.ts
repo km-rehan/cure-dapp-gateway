@@ -24,7 +24,8 @@ export const Session: DynamicModule = SessionModule.forRootAsync({
             saveUninitialized: true,
             resave: true,
             cookie: {
-                secure: true
+                secure: false,
+                sameSite: "strict"
             }
         },
     };

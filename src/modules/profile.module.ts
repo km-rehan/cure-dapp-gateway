@@ -1,5 +1,6 @@
 import { Module } from "@nestjs/common";
 import { ProfileController } from "src/controllers/profile.controller";
+import { ProfileService } from "src/services/profile.service";
 import { FileUploadModule } from "./fileupload.module";
 
 
@@ -7,8 +8,8 @@ import { FileUploadModule } from "./fileupload.module";
   controllers: [
     ProfileController
   ],
-  exports: [],
-  providers: [],
+  exports: [ProfileService],
+  providers: [ProfileService],
   imports: [
     FileUploadModule,
   ]

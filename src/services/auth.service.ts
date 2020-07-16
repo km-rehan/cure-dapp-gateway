@@ -59,7 +59,21 @@ export class AuthService {
 
             return response.toPromise();
         } catch (exception) {
+            throw exception;
+        }
+    }
 
+    public async verifyToken(token: string): Promise<any> {
+        try {
+            const response = this.client.send<any>(
+                {
+                    cmd: 'verify-token'
+                },
+                token
+            )
+            return response.toPromise();
+        } catch (exception) {
+            throw exception;
         }
     }
 

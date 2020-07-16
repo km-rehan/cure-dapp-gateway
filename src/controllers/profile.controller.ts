@@ -12,15 +12,22 @@ import {
   Param
 } from "@nestjs/common";
 import { Request, Response } from "express";
-import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { HttpExceptionFilter } from "../filters/http-exception.filter";
 import { editFileName, imageFileFilter } from "../utils/file-uploading.util";
+import { ProfileService } from "src/services/profile.service";
+import { ProfileBodyDto } from "src/dtos/profile-body-dto";
 
 
 
 @Controller("api/profile")
 export class ProfileController {
+
+
+  constructor(private readonly profileService: ProfileService) {
+
+  }
 
   @UseFilters(new HttpExceptionFilter())
   @Post("saveUserProfile")
@@ -37,9 +44,12 @@ export class ProfileController {
     }),
   )
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  public async saveUserProfile(@UploadedFile() file, @Req() request: Request): Promise<any> {
+  public async saveUserProfile(@UploadedFile() file, @Body() profileBody: ProfileBodyDto, @Req() request: Request): Promise<any> {
     try {
-      
+      console.log("User", JSON.stringify(request["user"]));
+      profileBody.avatar = file.filename;
+      const response = this.profileService.saveUserProfileService(profileBody);
+      return response;
     } catch (exception) {
       throw exception;
     } 

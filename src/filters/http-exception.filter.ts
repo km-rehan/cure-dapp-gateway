@@ -16,12 +16,15 @@ import {
       const status = exception instanceof HttpException
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
+      const message = exception instanceof HttpException
+        ? exception.getResponse()["message"]
+        : exception["message"]
   
       response.status(status).json({
         statusCode: status,
         timestamp: new Date().toISOString(),
         path: request.url,
-        message: exception.message,
+        message: message,
       });
     }
   }

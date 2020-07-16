@@ -21,10 +21,13 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@nest-middlewares/compression": "^6.0.0",
+    "@nest-middlewares/connect-timeout": "^6.0.0",
+    "@nest-middlewares/helmet": "^6.0.0",
     "@nestjs/common": "^7.0.0",
     "@nestjs/config": "^0.5.0",
     "@nestjs/core": "^7.0.0",
-    "@nestjs/microservices": "^7.3.1",
+    "@nestjs/microservices": "^7.3.2",
     "@nestjs/platform-express": "^7.0.0",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
@@ -35,7 +38,8 @@
     "redis": "^3.0.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.5.4"
+    "rxjs": "^6.5.4",
+    "shrink-ray-current": "^4.1.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.0.0",

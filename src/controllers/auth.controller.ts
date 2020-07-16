@@ -4,7 +4,6 @@ import { HttpExceptionFilter } from "../filters/http-exception.filter";
 import { AuthService } from "../services/auth.service";
 import { VerifyMessageDTO } from "../dtos/verify-message.dto";
 import * as _ from "lodash";
-import { EmailBodyDTO } from "src/dtos/email-body.dto";
 
 @Controller("api/auth")
 export class AuthController {
@@ -15,6 +14,8 @@ export class AuthController {
     @UseFilters(new HttpExceptionFilter())
     @Get("getUserSessionId")
     public getUserSessionId(@Req() request: Request): any {
+        const sessionId = request.sessionID;
+        console.log("Session id", sessionId);
         return this.authService.getUniqueSessionId(request);
     }
 
@@ -23,6 +24,7 @@ export class AuthController {
     public async verifyMessage(@Req() request: Request): Promise<any> {
         try {
             const sessionId = request.sessionID;
+            console.log("Session id", sessionId);
             const { walletAddress, signature } = request.body;
             const verifyMessageDTO: VerifyMessageDTO = {
                 tokenId: sessionId,
