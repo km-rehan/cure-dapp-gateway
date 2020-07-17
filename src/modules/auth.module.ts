@@ -10,10 +10,4 @@ import { AuthController } from "../controllers/auth.controller";
     providers: [AuthService],
     exports: [AuthService]
 })
-export class AuthModule implements NestModule {
-
-    configure(consumer: MiddlewareConsumer): void {
-        consumer.apply(HeaderValidationMiddleware)
-            .forRoutes(AuthController)
-    }
-}
+export class AuthModule {}

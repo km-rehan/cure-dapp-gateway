@@ -46,7 +46,6 @@ export class ProfileController {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public async saveUserProfile(@UploadedFile() file, @Body() profileBody: ProfileBodyDto, @Req() request: Request): Promise<any> {
     try {
-      console.log("User", JSON.stringify(request["user"]));
       profileBody.avatar = file.filename;
       const response = this.profileService.saveUserProfileService(profileBody);
       return response;

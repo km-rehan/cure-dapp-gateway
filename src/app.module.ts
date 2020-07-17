@@ -7,6 +7,11 @@ import { HelmetMiddleware } from '@nest-middlewares/helmet';
 import { ConnectTimeoutMiddleware } from '@nest-middlewares/connect-timeout';
 import { HeaderValidationMiddleware } from './middleware/headers.middleware';
 
+
+const unauthRoutes = [
+  { path: `/api/profile`, method: RequestMethod.ALL }
+];
+
 @Module({
   imports: [
     ConfigureModule,
@@ -44,19 +49,6 @@ export class AppModule implements NestModule {
     })
 
     consumer.apply(HeaderValidationMiddleware)
-      .exclude(
-        {
-          path: "/api/auth/getUserSessionId",
-          method: RequestMethod.ALL
-        },
-        {
-          path: "/api/auth/verifyMessage",
-          method: RequestMethod.ALL
-        }
-      )
-      .forRoutes({
-      path: "*",
-      method: RequestMethod.ALL
-    })
+      .forRoutes(...unauthRoutes)
   }
 }

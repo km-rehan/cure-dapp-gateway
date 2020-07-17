@@ -15,7 +15,6 @@ export class AuthController {
     @Get("getUserSessionId")
     public getUserSessionId(@Req() request: Request): any {
         const sessionId = request.sessionID;
-        console.log("Session id", sessionId);
         return this.authService.getUniqueSessionId(request);
     }
 
@@ -24,7 +23,6 @@ export class AuthController {
     public async verifyMessage(@Req() request: Request): Promise<any> {
         try {
             const sessionId = request.sessionID;
-            console.log("Session id", sessionId);
             const { walletAddress, signature } = request.body;
             const verifyMessageDTO: VerifyMessageDTO = {
                 tokenId: sessionId,
