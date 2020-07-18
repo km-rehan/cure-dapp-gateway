@@ -63,7 +63,7 @@ export class AuthService {
         }
     }
 
-    public async verifyToken(token: string): Promise<any> {
+    public async verifyToken(token: string | string[]): Promise<any> {
         try {
             const response = this.client.send<any>(
                 {

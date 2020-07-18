@@ -14,8 +14,9 @@ export class HeaderValidationMiddleware implements NestMiddleware {
     async use(request: Request, response: Response, next: () => void): Promise<any> {
         try {
             const headers = request.headers;
-            if (!_.has(headers, 'Auth Token')) throw new HttpException("Unauthorized access to the site", HttpStatus.UNAUTHORIZED);
-            const headerToken: string = headers["Auth Token"].toString();
+            console.log("Headers", JSON.stringify(headers, null, 3));
+            if (headers["AuthToken"] || headers["AuthToken"] === "") throw new HttpException("Unauthorized access to the site", HttpStatus.UNAUTHORIZED);
+            const headerToken = headers["AuthToken"];
             const user = await this.authService.verifyToken(headerToken);
             request["user"] = user;
             next()
