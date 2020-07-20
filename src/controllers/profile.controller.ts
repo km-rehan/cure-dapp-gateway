@@ -4,7 +4,6 @@ import {
   Req,
   UseFilters,
   UseInterceptors,
-  UploadedFiles,
   Body,
   UploadedFile,
   Res,
@@ -44,9 +43,10 @@ export class ProfileController {
     }),
   )
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  public async saveUserProfile(@UploadedFile() file, @Body() profileBody: ProfileBodyDto, @Req() request: Request): Promise<any> {
+  public async saveUserProfile(@UploadedFile() profileImage, @Body() profileBody: ProfileBodyDto, @Req() request: Request): Promise<any> {
     try {
-      profileBody.avatar = file.filename;
+      console.log("Profile image", profileImage)
+      profileBody.avatar = profileImage.filename;
       const response = this.profileService.saveUserProfileService(profileBody);
       return response;
     } catch (exception) {

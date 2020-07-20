@@ -6,6 +6,10 @@ import { ProfileModule } from "./modules/profile.module";
 import { HelmetMiddleware } from '@nest-middlewares/helmet';
 import { ConnectTimeoutMiddleware } from '@nest-middlewares/connect-timeout';
 import { HeaderValidationMiddleware } from './middleware/headers.middleware';
+import { AdminModule } from './modules/admin.module';
+import { AppointmentModule } from './modules/appointment.module';
+import { DoctorsModule } from './modules/doctors.module';
+import { ReportsModule } from './modules/reports.module';
 
 
 const unauthRoutes = [
@@ -17,7 +21,11 @@ const unauthRoutes = [
     ConfigureModule,
     Session,
     AuthModule,
-    ProfileModule
+    ProfileModule,
+    AdminModule,
+    AppointmentModule,
+    DoctorsModule,
+    ReportsModule
   ],
   controllers: [],
   providers: [],

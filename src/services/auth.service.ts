@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { Client, ClientProxy, Transport } from "@nestjs/microservices";
 import { EmailBodyDTO } from "../dtos/email-body.dto";
+import { AuthBodyDto } from "../dtos/auth-body.dto";
 import { VerifyMessageDTO } from "../dtos/verify-message.dto";
 import { Request } from "express";
 
@@ -63,13 +64,14 @@ export class AuthService {
         }
     }
 
-    public async verifyToken(token: string | string[]): Promise<any> {
+    public async verifyToken(authBodyDto: AuthBodyDto): Promise<any> {
         try {
+            console.log("AuthBody", JSON.stringify(authBodyDto));
             const response = this.client.send<any>(
                 {
                     cmd: 'verify-token'
                 },
-                token
+                authBodyDto
             )
             return response.toPromise();
         } catch (exception) {
