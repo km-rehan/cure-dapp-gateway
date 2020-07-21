@@ -4,6 +4,7 @@ import { ValidationPipe } from "@nestjs/common";
 import { Transport } from "@nestjs/microservices";
 import { NestExpressApplication } from '@nestjs/platform-express';
 import * as shrinkRay from "shrink-ray-current";
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 function shouldCompress(req, res) {
   if (req.headers['x-no-compression']) {
@@ -44,6 +45,16 @@ async function bootstrap() {
     transform: true,
     skipMissingProperties: true,
   }))
+
+  const options = new DocumentBuilder()
+    .setTitle('Cure Dapp')
+    .setDescription('Cure dapp API description')
+    .setVersion('1.0')
+    .addTag('cure dapp')
+    .build();
+  const document = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup('api', app, document);
+
   await app.listen(4200);
 }
 bootstrap();

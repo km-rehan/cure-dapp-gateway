@@ -1,9 +1,7 @@
-import { Catch, ConflictException, Injectable } from "@nestjs/common";
-import { Client, ClientProxy, RedisContext, Transport } from "@nestjs/microservices";
-import { Request } from "express";
-import { from } from "rxjs";
+import { Injectable } from "@nestjs/common";
+import { Client, ClientProxy, Transport } from "@nestjs/microservices";
 import { ProfileBodyDto } from "src/dtos/profile-body-dto";
-import { } from "@nestjs/microservices";
+import { GetProfileDto } from "src/dtos/get-profile.dto";
 
 const REDIS_HOST = process.env.REDIS_HOST || "localhost";
 const REDIS_PORT = parseInt(process.env.REDIS_PORT) || 6379;
@@ -27,6 +25,48 @@ export class ProfileService {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor() {
     
+  }
+
+  public async getProfileDataForDoctor(getProfileDto: GetProfileDto): Promise<any> {
+    try {
+      const response = await this.client.send<any>(
+        {
+          cmd: 'get-profile-for-doctor'
+        },
+        getProfileDto
+      )
+      return response;
+    } catch (exception) {
+      throw exception;
+    }
+  }
+
+  public async getProfileDataForUser(getProfileDto: GetProfileDto): Promise<any> {
+    try {
+      const response = await this.client.send<any>(
+        {
+          cmd: 'get-profile-for-user'
+        },
+        getProfileDto
+      )
+      return response;
+    } catch (exception) {
+      throw exception;
+    }
+  }
+
+  public async saveDoctorsProfileService(profileBodyDto: ProfileBodyDto): Promise<any> {
+    try {
+      const response = await this.client.send<any>(
+        {
+          cmd: 'update-doctors-profile'
+        },
+        profileBodyDto
+      )
+      return response.toPromise();
+    } catch (exception) {
+      throw exception;
+    }
   }
 
   public async saveUserProfileService(profileBodyDto: ProfileBodyDto): Promise<any> {

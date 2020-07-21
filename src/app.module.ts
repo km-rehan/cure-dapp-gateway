@@ -8,7 +8,6 @@ import { ConnectTimeoutMiddleware } from '@nest-middlewares/connect-timeout';
 import { HeaderValidationMiddleware } from './middleware/headers.middleware';
 import { AdminModule } from './modules/admin.module';
 import { AppointmentModule } from './modules/appointment.module';
-import { DoctorsModule } from './modules/doctors.module';
 import { ReportsModule } from './modules/reports.module';
 
 
@@ -24,7 +23,6 @@ const unauthRoutes = [
     ProfileModule,
     AdminModule,
     AppointmentModule,
-    DoctorsModule,
     ReportsModule
   ],
   controllers: [],

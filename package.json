@@ -29,6 +29,7 @@
     "@nestjs/core": "^7.0.0",
     "@nestjs/microservices": "^7.3.2",
     "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/swagger": "^4.5.12",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
     "connect-redis": "^4.0.4",
@@ -40,7 +41,8 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",
-    "shrink-ray-current": "^4.1.2"
+    "shrink-ray-current": "^4.1.2",
+    "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.0.0",

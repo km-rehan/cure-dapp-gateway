@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Client, ClientProxy, Transport } from "@nestjs/microservices";
+import { AppointmentDto } from "../dtos/appointment.dto";
 
 
 const REDIS_HOST = process.env.REDIS_HOST || "localhost";
@@ -21,13 +22,13 @@ export class AppointmentService {
 
   }
 
-  public async bookAppointment(): Promise<any> {
+  public async bookAppointment(appointmentDto: AppointmentDto): Promise<any> {
     try {
       const response = this.client.send<any>(
         {
           cmd: "book-appointment"
         },
-        {}
+        appointmentDto
       )
       return response.toPromise(); 
     } catch (exception) {

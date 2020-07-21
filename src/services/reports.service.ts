@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Client, ClientProxy, Transport } from "@nestjs/microservices";
+import { MedicalReportsDto } from "src/dtos/medical-reports.dto";
 
 
 @Injectable()
@@ -18,13 +19,13 @@ export class ReportService {
 
   }
 
-  public async uploadMedicalReports(): Promise<any> {
+  public async uploadMedicalReports(medicalReports: MedicalReportsDto): Promise<any> {
     try {
       const response = this.client.send<any>(
         {
           cmd: "upload-medical-reports"
         },
-        {}
+        medicalReports
       )
       return response.toPromise();
     } catch (exception) {

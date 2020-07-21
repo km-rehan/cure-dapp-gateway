@@ -66,7 +66,6 @@ export class AuthService {
 
     public async verifyToken(authBodyDto: AuthBodyDto): Promise<any> {
         try {
-            console.log("AuthBody", JSON.stringify(authBodyDto));
             const response = this.client.send<any>(
                 {
                     cmd: 'verify-token'
