@@ -30,6 +30,16 @@ export class ProfileController {
   }
 
   @UseFilters(new HttpExceptionFilter())
+  @Post("applyAsDoctor")
+  public async applyAsDoctor(@Req() request: Request): Promise<any> {
+    try {
+      const userId = request["user"]["_id"];
+    } catch (exception) {
+      throw exception;
+    }
+  }
+
+  @UseFilters(new HttpExceptionFilter())
   @Get("getUserProfile")
   public async getUserProfileData(@Req() request: Request): Promise<any> {
     try {
@@ -76,6 +86,20 @@ export class ProfileController {
     try {
       const userId = request["user"]["_id"];
       const response = await this.profileService.getProfileDataForUser({ userId: userId });
+      return response;
+    } catch (exception) {
+      throw exception;
+    }
+  }
+
+  @UseFilters(new HttpExceptionFilter())
+  @Get("getProfile")
+  public async getProfile(@Req() request: Request): Promise<any> {
+    try {
+      const userId = request["user"]["_id"];
+      const response = await this.profileService.getProfileDataForUser({
+        userId: userId
+      });
       return response;
     } catch (exception) {
       throw exception;

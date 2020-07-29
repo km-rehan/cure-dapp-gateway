@@ -20,14 +20,14 @@ export class KycService {
 
     public async getKycStatus(getKycDto: GetKycDto): Promise<any> {
         try {
-            const user = await this.client.send<any>(
+            const response = await this.client.send<any>(
                 {
                     cmd: 'get-kyc-status'
                 },
                 getKycDto
             )
 
-            return user;
+            return response;
         } catch (error) {
             throw exception;
         }

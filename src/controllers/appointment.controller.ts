@@ -34,5 +34,7 @@ export class AppointmentController {
       throw exception;
     }
   }
+
+  
   
 }

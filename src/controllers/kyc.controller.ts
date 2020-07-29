@@ -1,6 +1,7 @@
 import { Controller, UseFilters, Get, Req } from "@nestjs/common";
 import { HttpExceptionFilter } from "src/filters/http-exception.filter";
 import { KycService } from "../services/kyc.service";
+import { Request } from "express";
 
 @Controller("kyc")
 export class KycController {

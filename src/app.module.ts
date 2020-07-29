@@ -9,6 +9,7 @@ import { HeaderValidationMiddleware } from './middleware/headers.middleware';
 import { AdminModule } from './modules/admin.module';
 import { AppointmentModule } from './modules/appointment.module';
 import { ReportsModule } from './modules/reports.module';
+import { KycModule } from './modules/kyc.module';
 
 
 const unauthRoutes = [
@@ -23,7 +24,8 @@ const unauthRoutes = [
     ProfileModule,
     AdminModule,
     AppointmentModule,
-    ReportsModule
+    ReportsModule,
+    KycModule
   ],
   controllers: [],
   providers: [],
