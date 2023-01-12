@@ -31,7 +31,7 @@
     "@nestjs/platform-express": "^7.0.0",
     "@nestjs/swagger": "^4.5.12",
     "class-transformer": "^0.2.3",
-    "class-validator": "^0.12.2",
+    "class-validator": "^0.14.0",
     "connect-redis": "^4.0.4",
     "lodash": "^4.17.17",
     "nestjs-redis": "^1.2.8",
